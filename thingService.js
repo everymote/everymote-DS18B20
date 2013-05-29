@@ -1,4 +1,5 @@
-var fs = require('fs');
+var fs = require('fs'),
+    config = require('./config');
 
 var readTemp = function(callback){
     fs.readFile('/sys/bus/w1/devices/28-00000480aa5b/w1_slave', function(err, buffer)
@@ -35,7 +36,7 @@ var createThing = function(){
 		"name": 'Temperature',
 		"id": 3942879,
 		"iconType": "Thermometeer",
-		//"position": config.getPosition(),
+		"position": config.getPosition(),
 		"information":[{
                         "header":"Temperature @ home"
 					}]};
