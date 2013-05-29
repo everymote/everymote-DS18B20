@@ -1,7 +1,7 @@
 var fs = require('fs');
 
 var readTemp = function(callback){
-    fs.readFile('/sys/bus/w1/devices/28-00000480d8f7/w1_slave', function(err, buffer)
+    fs.readFile('/sys/bus/w1/devices/28-00000480aa5b/w1_slave', function(err, buffer)
     {
       if (err){
          console.error(err);
@@ -17,14 +17,10 @@ var readTemp = function(callback){
       // Round to one decimal place
       temp = Math.round(temp * 10) / 10;
 
-      // Add date/time to temperature
-    var data = {
-            unix_time: Date.now(),
-            celsius: temp
-            };
+      // Add date/time to temperature;
 
       // Execute call back with data
-      callback(data);
+      callback(temp);
    });
 };
 
@@ -48,7 +44,8 @@ var createThing = function(){
 	var timeForUpdate = function() {
        var update = function(data){
            if(thing.socket){
-            thing.socket.emit('updateInfo', data.celsius +" °C");
+		//console.log(data);
+            thing.socket.emit('updateInfo', data +" °C");
             }
         };
         readTemp(update);

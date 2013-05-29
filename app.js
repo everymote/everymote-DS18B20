@@ -13,7 +13,7 @@ var connectThing = function(thing, onAction){
             ,'reconnection delay': 5000
             ,'reconnection limit': 5000
             ,'max reconnection attempts': 10 });
-
+	
 	socket.on('connect', function () {
 		console.log('connected');
 		socket.emit('setup', thing.settings);
@@ -33,6 +33,8 @@ var connectThing = function(thing, onAction){
 	}).on('reconnect_failed', function () {
 		console.log('reconnect_failed');
 	});
+
+	thing.socket = socket;
 };
 
 
