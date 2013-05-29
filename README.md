@@ -1,0 +1,1 @@
+Connect DS18B20 temperature sensor to everymote
